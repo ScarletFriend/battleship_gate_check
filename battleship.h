@@ -15,7 +15,7 @@ typedef struct game_board{
 game_board design_board(game_board player);
 
 
-void craft_setup(int board[row][col]);
+void craft_setup(int board[8][8]);
 
 #endif //BATTLESHIP_H
 

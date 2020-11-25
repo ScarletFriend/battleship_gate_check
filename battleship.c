@@ -32,41 +32,45 @@ game_board design_board(game_board player){
     }
 }
 
-void craft_setup(int board[8][8]){
+void craft_setup(int board[8][8])
+{
+
     int craft_type = 1;
     int craft_length = 0; 
     int row = 0;
     int col = 0; 
     int direction = 0; 
     int count = 0;
-    for(craft_type = 1; craft_type <= 5; craft_type++){
-        if (craft_type == 1){
-            printf("Please enter coordinates you would like to start your C-17(5).\n\n");
-            craft_length = 5;
-        }
-        else if(craft_type == 2){
-            printf("Please enter coordinates you would like to start your A-10(4).\n\n");
-            craft_length = 4;
-        }
-        else if(craft_type == 3){
-             printf("Please enter coordinates you would like to start your F-16(3).\n\n");
-            craft_length = 3;
-        }
-        else if(craft_type == 4){
-             printf("Please enter coordinates you would like to start your B-2(2).\n\n");
-            craft_length = 2;
-        }
-        else if(craft_type == 5){
-             printf("Please enter coordinates you would like to start your Osprey(5).\n\n");
-            craft_length = 5;
-        }
-        printf("Please enter the direction of your craft\n");
-        printf("\tv for vertical or h for horizontal")
+    char* typestr[] = { "Craft type 0", "C-17", "A-10", "F-16", "B-2", "Osprey" };
+    char* tag = "0CAFBO"; 
 
+    for (craft_type = 0; craft_type <= 5; craft_type++)
+    {
+        craft_length = 7 - craft_type;
+        prinf("Please enter where you would like to start you %s (%s) spots).\n\n",typestr[craft_type], craft_length);
+
+        printf("Choose the direction of your craft. v is vertical & h is horizontal\n\n");
+        scanf("%c ",&direction);
+
+        printf("Please choose a row number.\n");
+        scanf("%d",&row);
+        printf("Please choose a column number.\n");
+        scanf("%d",&col);
+
+        if ((direction == 'v') && (row + craft_length <= 8))
+        {
+            board[row+count][col] = tag[craft_type];
+        }
+        else if((direction == 'h') && (col + craft_length <= 8))
+        {
+            board[row][col+count] = tag[craft_type];
+        }
+        else{
+            printf("PLease reenter appropraite coordinates.\n");
+        }
     }
 }
-
-
+          
 
 int main(){
     intro_screen;
@@ -84,5 +88,6 @@ int main(){
 
     design_board(person);
 
-    craft_setup(int board[row][col]);
+    int board[8][8];
+    craft_setup(board[8][8]);
 }
